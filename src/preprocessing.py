@@ -14,6 +14,10 @@ def clean_raw_data(df,is_train=True):
     # remove white space
     df.columns = df.columns.str.strip()
 
+    # xóa bỏ cột rỗng nếu target rỗng
+    if is_train:
+        df = df.dropna(subset=[config.target_col])
+
     # remove unnecessary columns
     df = df.drop(config.unnecessary_cols, axis=1, errors="ignore")
 
@@ -21,7 +25,7 @@ def clean_raw_data(df,is_train=True):
     if is_train:
         necessary_cols = (
             config.numerical_cols +
-            config.category_cols +
+            config.nominal_cols +
             config.ordinal_cols +
             [config.target_col]
         )
@@ -29,7 +33,7 @@ def clean_raw_data(df,is_train=True):
     else:
         necessary_cols = (
             config.numerical_cols +
-            config.category_cols +
+            config.nominal_cols +
             config.ordinal_cols
         )
         df = df[necessary_cols]

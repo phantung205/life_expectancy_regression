@@ -47,7 +47,7 @@ numerical_cols = [
     "Income composition of resources",
     "Schooling"
 ]
-category_cols = [
+nominal_cols = [
     "Country"
 ]
 ordinal_cols = [
@@ -60,5 +60,10 @@ unnecessary_cols = [
     "thinness  1-19 years",
     "thinness 5-9 years"
 ]
+
+# -----------------------------
+# path model
+#------------------------------
+dir_model = os.path.join(root_dir,"models")
 
 
