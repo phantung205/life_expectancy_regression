@@ -14,8 +14,8 @@ def main(args):
     _,x_test,_,y_test = preprocessing.preprocess_and_split()
 
     # load model
-    model_path = os.path.join(config.dir_model,"{}.pkl".format(args.model_name))
-    if not os.path.join(model_path):
+    model_path = os.path.join(config.dir_model, "{}.pkl".format(args.model_name))
+    if not os.path.isfile(model_path):
         print("You need to train the model to have checkpoints before testing.")
         exit(0)
     model = joblib.load(model_path)

@@ -52,7 +52,7 @@ def build_model(args):
     else:
         raise ValueError(
             f"Model '{args.model_name}' is not supported. "
-            "Choose from: random_forest, logistic, svm"
+            "Choose from: LinearRegression, RandomForestRegressor, Ridge"
         )
     return clf
 
