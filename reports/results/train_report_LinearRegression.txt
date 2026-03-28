@@ -1,0 +1,4 @@
+Model: LinearRegression
+MAE: 1.2245
+MSE: 3.8333
+R2 : 0.9557

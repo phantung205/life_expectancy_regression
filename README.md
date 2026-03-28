@@ -1,15 +1,11 @@
-# 🌍 Life Expectancy Prediction (Machine Learning - Regression)
+#  Life Expectancy Prediction (Machine Learning - Regression)
 
 Dự án Machine Learning dự đoán **Tuổi thọ trung bình (Life Expectancy)** dựa trên các yếu tố kinh tế – xã hội và y tế.
-
 Bài toán thuộc loại **Supervised Learning – Regression**.
-
-🔗 GitHub Repository:  
-https://github.com/phantung205
 
 ---
 
-## 🚀 Chức năng
+## 1. Chức năng
 
 - Phân tích dữ liệu (EDA)
 - Tiền xử lý dữ liệu
@@ -20,14 +16,14 @@ https://github.com/phantung205
 
 ---
 
-## 🖥️ Yêu cầu
+## 2. Yêu cầu
 
 - Python >= 3.8
 - pip
 
 ---
 
-## 📂 Cấu trúc thư mục
+## 3. Cấu trúc thư mục
 
 ```text
 life_expectancy/
@@ -46,25 +42,26 @@ life_expectancy/
 
 ---
 
-## 📊 Dataset
+## 4. Dataset
 
-🔗 Kaggle – WHO Life Expectancy Dataset:  
-https://www.kaggle.com/datasets/kumarajarshi/life-expectancy-who
+### 4.1 Tải dữ liệu
+
+- Kaggle – WHO Life Expectancy Dataset:  
+ https://www.kaggle.com/datasets/kumarajarshi/life-expectancy-who
 
 Sau khi tải về, đặt file vào:
-
 ```
 data/raw/Life Expectancy Data.csv
 ```
 
 ---
 
-### 🎯 Biến mục tiêu
+### 4.2 Biến mục tiêu
 - Life expectancy
 
 ---
 
-### 🔢 Numerical features
+### 4.3 Numerical features
 - Year  
 - Adult Mortality  
 - Alcohol  
@@ -81,17 +78,17 @@ data/raw/Life Expectancy Data.csv
 
 ---
 
-### 🏷️ Nominal
+### 4.4 Nominal
 - Country  
 
 ---
 
-### 🔠 Ordinal
+### 4.5 Ordinal
 - Status  
 
 ---
 
-### ❌ Cột loại bỏ
+### 4.6 Cột loại bỏ
 - infant deaths  
 - percentage expenditure  
 - GDP  
@@ -101,9 +98,9 @@ data/raw/Life Expectancy Data.csv
 
 ---
 
-## ⚙️ Cài đặt
+## 5. Cài đặt
 
-### 1️⃣ Tạo môi trường ảo
+### 5.1 Tạo môi trường ảo
 
 ```bash
 python -m venv venv
@@ -123,7 +120,7 @@ source venv/bin/activate
 
 ---
 
-### 2️⃣ Cài thư viện
+### 5.2 Cài thư viện
 
 ```bash
 pip install -r requirements.txt
@@ -131,13 +128,27 @@ pip install -r requirements.txt
 
 ---
 
-## 🧠 Train model
-
-```bash
-python src/train.py
+## 6. chỉnh cấu hình tham số mặc định
+```text
+config.py
 ```
 
-Model sau khi train sẽ được lưu tại:
+---
+
+## 7. Train model
+
+```bash
+# RandomForestRegressor
+python -m src.train -m RandomForestRegressor
+
+# LinearRegression
+python -m src.train -m LinearRegression
+
+# Ridge
+python -m src.train -m Ridge
+```
+
+### 7.2 Model sau khi train sẽ được lưu tại:
 
 ```
 models/
@@ -145,7 +156,7 @@ models/
 
 ---
 
-## 📊 Đánh giá mô hình
+## 8. Đánh giá mô hình
 
 - MAE (Mean Absolute Error)
 - RMSE (Root Mean Squared Error)
@@ -153,7 +164,7 @@ models/
 
 ---
 
-## 📈 Báo cáo
+## 9. Báo cáo
 
 - EDA:
 ```
@@ -167,18 +178,11 @@ reports/results/
 
 ---
 
-## 🔁 Dự đoán dữ liệu mới
+## 10. Dự đoán dữ liệu mới
 
 ```bash
 python src/inference.py
 ```
-
----
-
-## ⚙️ Tham số cấu hình mặc định
-
-- random_state = 42
-- test_size = 0.2
 
 ---
 

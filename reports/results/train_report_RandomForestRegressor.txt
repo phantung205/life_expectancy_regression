@@ -1,0 +1,4 @@
+Model: RandomForestRegressor
+MAE: 1.1082
+MSE: 3.0036
+R2 : 0.9653
