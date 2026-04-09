@@ -24,7 +24,7 @@ def parse_args():
     p.add_argument("--n_estimators","-n",type=int,default=300,help="number n_estimators")
 
     # argument Ridge
-    p.add_argument("--alpha","-a", type=float ,default=1.0,help="number alpha")
+    p.add_argument("--alpha","-a", type=float ,default=0.01,help="number alpha")
     return p.parse_args()
 
 
@@ -37,9 +37,9 @@ def build_model(args):
     elif args.model_name == "RandomForestRegressor":
         clf = RandomForestRegressor(
             n_estimators= args.n_estimators,
-            max_depth=12,
-            min_samples_split=5,
-            min_samples_leaf=3,
+            max_depth=16,
+            min_samples_split=2,
+            min_samples_leaf=1,
             random_state=args.random_state,
             n_jobs=-1
         )

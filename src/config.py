@@ -21,6 +21,8 @@ reports_eda_dir = os.path.join(reports_dir,"edu")
 reports_results_dir = os.path.join(reports_dir,"results")
 # name file report
 file_name_reports = "report_life_expectancy.html"
+#dir parameter
+dir_parameter = os.path.join(reports_dir,"parameter")
 
 # --------------------------
 # random stage and test size

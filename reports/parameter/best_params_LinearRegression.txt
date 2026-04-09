@@ -1,0 +1,7 @@
+Model: LinearRegression
+
+Best Parameters:
+clf__fit_intercept: True
+
+Best CV Score (R2):
+0.956889

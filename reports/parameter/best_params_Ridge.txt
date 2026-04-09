@@ -1,0 +1,7 @@
+Model: Ridge
+
+Best Parameters:
+clf__alpha: 0.01
+
+Best CV Score (R2):
+0.956918
