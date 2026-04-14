@@ -148,7 +148,7 @@ python -m src.train -m LinearRegression
 python -m src.train -m Ridge
 ```
 
-### 7.2 Model sau khi train sẽ được lưu tại:
+### 7.1 Model sau khi train sẽ được lưu tại:
 
 ```
 models/
@@ -156,7 +156,19 @@ models/
 
 ---
 
-## 8. Đánh giá mô hình
+## 8. chạy docker containner 
+
+```bash
+docker build -t life_expectancy .
+
+docker run -it  --rm -v ${PWD}/data/raw:/life_expectancy/data/raw  -v ${PWD}/model:/life_expectancy/model  life_expectancy bash
+
+```
+- sau khi vào trong docker chạy các lệnh train model như phần 7
+
+---
+
+## 9. Đánh giá mô hình
 
 - MAE (Mean Absolute Error)
 - RMSE (Root Mean Squared Error)
@@ -164,7 +176,7 @@ models/
 
 ---
 
-## 9. Báo cáo
+## 10. Báo cáo
 
 - EDA:
 ```
@@ -178,7 +190,7 @@ reports/results/
 
 ---
 
-## 10. Dự đoán dữ liệu mới
+## 11. Dự đoán dữ liệu mới
 
 ```bash
 python src/inference.py
