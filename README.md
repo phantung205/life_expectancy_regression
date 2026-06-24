@@ -1,7 +1,7 @@
 #  Life Expectancy Prediction (Machine Learning - Regression)
 
 Dự án Machine Learning dự đoán **Tuổi thọ trung bình (Life Expectancy)** dựa trên các yếu tố kinh tế – xã hội và y tế.
-Bài toán thuộc loại **Supervised Learning – Regression**.
+Bài toán thuộc loại **Supervised Learning – Regression** , giao diện Wed sự dụng Flask.
 
 ---
 
@@ -156,15 +156,21 @@ models/
 
 ---
 
-## 8. chạy docker containner 
-
+## 8. chạy docker container 
+### 8.1 build docker image
 ```bash
 docker build -t life_expectancy .
-
-docker run -it  --rm -v ${PWD}/data/raw:/life_expectancy/data/raw  -v ${PWD}/model:/life_expectancy/model  life_expectancy bash
-
+```
+### 8.2 vào trong container train 
+```bash
+docker run -it  --rm -v ${PWD}/data/raw:/life_expectancy/data/raw  -v ${PWD}/models:/life_expectancy/models  life_expectancy bash
 ```
 - sau khi vào trong docker chạy các lệnh train model như phần 7
+
+### 8.3 nếu đã có checkpoint thì chạy app luôn trong container
+```bash
+docker run  --rm -p 5000:5000  -v ${PWD}/models:/life_expectancy/models  life_expectancy 
+```
 
 ---
 
@@ -190,11 +196,14 @@ reports/results/
 
 ---
 
-## 11. Dự đoán dữ liệu mới
+## 11. Chạy ứng dụng wed, test
 
 ```bash
-python src/inference.py
+python app.py
 ```
+Mặc định ứng dụng chạy tại:
+
+http://127.0.0.1:5000
 
 ---
 

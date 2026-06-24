@@ -17,13 +17,18 @@ env/
 # Data (KHÔNG push data)
 data/raw/
 data/processed/
-*.csv
+
 
 # Models
 models/
 *.pkl
 *.joblib
 
-
+# ko up dữ liệu file
+*.csv
+*.xlsx
+*.xls
+uploads/
+results/
 
 

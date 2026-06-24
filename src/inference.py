@@ -60,7 +60,6 @@ if __name__ == '__main__':
         "Year": 2015,
         "Status": "Developing",
         "Adult Mortality": 142,
-        "infant deaths": 18,
         "Alcohol": 4.3,
         "percentage expenditure": 0.0,
         "Hepatitis B": 97,

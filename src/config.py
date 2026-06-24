@@ -55,6 +55,7 @@ nominal_cols = [
 ordinal_cols = [
     "Status"
 ]
+
 unnecessary_cols = [
     "infant deaths",
     "percentage expenditure",
@@ -68,4 +69,10 @@ unnecessary_cols = [
 #------------------------------
 dir_model = os.path.join(root_dir,"models")
 
+
+# -----------------------------
+# directory file upload and predict
+#------------------------------
+upload_folder = os.path.join(root_dir,"uploads")
+result_folder = os.path.join(root_dir,"results")
 

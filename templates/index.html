@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>predict life expectancy</title>
+</head>
+<body>
+  <h1> mời bại nhập vào các thông số cần dự đoán</h1>
+  {% if error %}
+    <p style="color:red;">lỗi: {{ error }}</p>
+  {% endif %}
+
+  <div>
+    <p>Model hiện tại đang dự đoán : {{selected_model}}</p>
+    <label>chọn model: </label>
+    <select id="model_select">
+      <option value="LinearRegression"
+        {% if selected_model=="LinearRegression" %}
+          selected
+        {% endif %}>
+        LinearRegression
+      </option>
+      <option value="RandomForestRegressor"
+        {% if selected_model=="RandomForestRegressor" %}
+          selected
+        {% endif %}>
+        RandomForestRegressor
+      </option>
+      <option value="Ridge"
+        {% if selected_model=="Ridge" %}
+          selected
+        {% endif %}>
+        Ridge
+      </option>
+    </select>
+  </div>
+  <form method="post" action="/predict">
+    <div>
+      <input type="hidden" name="model_name" id="predict_model">
+    </div>
+    <div>
+      <label>nhập vào năm dự đoán: </label>
+      <input type="number" step="1" min="1" name="Year" value="{{ data['Year'] if data else '' }}"  required>
+    </div>
+    <div>
+      <label>nhập vào Số người chết trên 1000 dân trong độ tuổi 15–60: </label>
+      <input type="number" step="1" min="0" max="1000" name="Adult_Mortality" value="{{ data['Adult Mortality'] if data else '' }}" required>
+    </div>
+    <div>
+      <label>nhập vào mức độ tiêu thụ rượu cồn nguyên chất/người: </label>
+      <input type="number" step="0.1" min="0" name="Alcohol" value="{{ data['Alcohol'] if data else '' }}" required>
+    </div>
+    <div>
+      <label>nhập vào Tỷ lệ % trẻ em được tiêm vaccine viêm gan B: </label>
+      <input type="number" step="0.1" min="0" max="100" name="Hepatitis_B" value="{{ data['Hepatitis B'] if data else '' }}" required>
+    </div>
+    <div>
+      <label>nhập vào Số ca mắc bệnh sởi được ghi nhận: </label>
+      <input type="number" step="1" min="0"  name="Measles" value="{{ data['Measles'] if data else '' }}" required>
+    </div>
+    <div>
+      <label>nhập vào Chỉ số khối cơ thể trung bình của dân số: </label>
+      <input type="number" step="0.1" min="1"  name="BMI" value="{{ data['BMI'] if data else '' }}" required>
+    </div>
+    <div>
+      <label>nhập vào Số trẻ em dưới 5 tuổi tử vong: </label>
+      <input type="number" step="1" min="0"  name="under_five_deaths" value="{{ data['under-five deaths'] if data else '' }}" required>
+    </div>
+    <div>
+      <label>nhập vào Tỷ lệ % tiêm vaccine bại liệt: </label>
+      <input type="number" step="0.1" min="0"  name="Polio" value="{{ data['Polio'] if data else '' }}" required>
+    </div>
+    <div>
+      <label>nhập vào Tỷ lệ % chi tiêu cho y tế trên GDP: </label>
+      <input type="number" step="0.1" min="0"  name="Total_expenditure" value="{{ data['Total expenditure'] if data else '' }}" required>
+    </div>
+    <div>
+      <label>nhập vào Tỷ lệ % tiêm vaccine bạch hầu: </label>
+      <input type="number" step="0.1" min="0"  name="Diphtheria" value="{{ data['Diphtheria'] if data else '' }}" required>
+    </div>
+    <div>
+      <label>nhập vào Tỷ lệ tử vong liên quan đến HIV/AIDS: </label>
+      <input type="number" step="0.1" min="0"  name="HIV_AIDS" value="{{ data['HIV/AIDS'] if data else '' }}" required>
+    </div>
+    <div>
+      <label>nhập vào Chỉ số phát triển nguồn lực kinh tế: </label>
+      <input type="number" step="0.1" min="0" max="1"  name="Income_composition_of_resources" value="{{ data['Income composition of resources'] if data else '' }}" required>
+    </div>
+    <div>
+      <label>nhập vào Số năm đi học trung bình: </label>
+      <input type="number" step="1" min="0"  name="Schooling" value="{{ data['Schooling'] if data else '' }}" required>
+    </div>
+    <div>
+      <label>nhập vào tên quốc gia: </label>
+      <input type="text"  name="Country" value="{{ data['Country'] if data else '' }}" required>
+    </div>
+    <div>
+      <label>Trạng thái phát triển của quốc gia: </label>
+      <input type="radio"  name="Status" id="Developed" required value="Developed"
+      {% if data and data['Status'] == 'Developed' %}
+            checked
+      {% endif %} >
+      <label for="Developed">Developed</label>
+      <input type="radio"  name="Status" required id="Developing" value="Developing"
+       {% if data and data['Status'] == 'Developing' %}
+            checked
+      {% endif %}>
+      <label for="Developing">Developing</label>
+    </div>
+    <div>
+        <button type="submit">Dự đoán</button>
+    </div>
+
+  </form>
+  <hr>
+  {% if result is not none %}
+    <div>
+      <p style="color:green;">kết quả dự đoán thổi thọ trung bình là: {{result}} </p>
+    </div>
+  {% endif %}
+
+  <hr>
+  <h2>phần up load dự đoán nhiều đối tượng trọng 1 file</h2>
+  <form action="/predict_file" enctype="multipart/form-data" method="post">
+        <input type="hidden" name="model_name" id="file_model">
+        <input type="file" name="file" accept=".csv,.xlsx,.xls">
+        <button type="submit">Upload và dự đoán</button>
+
+        {% if output_save %}
+            <p style="color:green;">
+                Dự đoán thành công
+            </p>
+
+            <a href="/download/{{ output_save }}">
+                <button type="button">
+                    Tải file kết quả
+                </button>
+            </a>
+        {% endif %}
+  </form>
+
+    <script>
+        function syncModel() {
+            let model = document.getElementById("model_select").value;
+            document.getElementById(
+                "predict_model"
+            ).value = model;
+
+            document.getElementById(
+                "file_model"
+            ).value = model;
+        }
+        syncModel();
+        document
+            .getElementById("model_select")
+            .addEventListener(
+                "change",
+                syncModel
+            );
+    </script>
+</body>
+</html>
