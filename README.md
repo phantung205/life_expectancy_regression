@@ -27,17 +27,19 @@ Bài toán thuộc loại **Supervised Learning – Regression** , giao diện W
 
 ```text
 life_expectancy/
-├── requirements.txt
-├── README.md
-├── data/
-│   ├── raw/
-│   │   └── Life Expectancy Data.csv
-│   └── processed/
-├── models/
-├── reports/
-│   ├── edu/
-│   └── results/
-└── src/
+├── data
+│   ├── processed
+│   └── raw
+├── models
+├── reports
+│   ├── edu
+│   ├── parameter
+│   └── results
+├── results
+├── src
+├── templates
+├── uploads
+└── validation
 ```
 
 ---
@@ -163,13 +165,13 @@ docker build -t life_expectancy .
 ```
 ### 8.2 vào trong container train 
 ```bash
-docker run -it  --rm -v ${PWD}/data/raw:/life_expectancy/data/raw  -v ${PWD}/models:/life_expectancy/models  life_expectancy bash
+docker run -it  --rm -v ${PWD}/data/raw:/life_expectancy/data/raw  -v ${PWD}/models:/life_expectancy/models -v ${PWD}/uploads:/life_expectancy/uploads -v ${PWD}/results:/life_expectancy/results  life_expectancy bash
 ```
 - sau khi vào trong docker chạy các lệnh train model như phần 7
 
 ### 8.3 nếu đã có checkpoint thì chạy app luôn trong container
 ```bash
-docker run  --rm -p 5000:5000  -v ${PWD}/models:/life_expectancy/models  life_expectancy 
+docker run  --rm -p 5000:5000  -v ${PWD}/models:/life_expectancy/models -v ${PWD}/uploads:/life_expectancy/uploads -v ${PWD}/results:/life_expectancy/results  life_expectancy 
 ```
 
 ---
