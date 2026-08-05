@@ -1,7 +1,7 @@
 import os
 
 
-def validate(data):
+def validate_dict(data):
     if data["Year"] <= 0:
         raise ValueError("Year phải lớn hơn  0")
     if data["Adult Mortality"] < 0:
@@ -29,11 +29,13 @@ def validate(data):
     if data["Schooling"] <= 0:
         raise ValueError("Schooling phải lớn hơn 0")
 
-def validate_file(filename):
-    if filename == "":
-        raise ValueError("chưa chọn file")
+def validate_file(file):
+    if file is None or file.filename == "":
+        raise ValueError("Chưa chọn file")
 
-    ext = os.path.splitext(filename)[1].lower()
+    ext = os.path.splitext(file.filename)[1].lower()
+
     allowed_ext = {".csv", ".xlsx", ".xls"}
+
     if ext not in allowed_ext:
         raise ValueError("Chỉ hỗ trợ file CSV hoặc Excel")

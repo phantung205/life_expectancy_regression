@@ -30,16 +30,22 @@ life_expectancy/
 ├── data
 │   ├── processed
 │   └── raw
+├── deploys
 ├── models
 ├── reports
 │   ├── edu
 │   ├── parameter
 │   └── results
 ├── results
+├── routes
+├── services
 ├── src
+├── static
+│   ├── css
+│   └── js
 ├── templates
-├── uploads
-└── validation
+└── uploads
+
 ```
 
 ---
