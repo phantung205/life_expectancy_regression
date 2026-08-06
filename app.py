@@ -2,6 +2,7 @@ from flask import Flask
 from src import config
 import os
 from routes.predict_route import  predict_bp
+from routes.report_route import report_bp
 
 
 # tạo hai thư mục lưu file người dùng upload và kết quả dự đoán
@@ -14,6 +15,7 @@ app= Flask(__name__)
 
 
 app.register_blueprint(predict_bp)
+app.register_blueprint(report_bp)
 
 if __name__ == "__main__":
     app.run(

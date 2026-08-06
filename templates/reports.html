@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <link rel="stylesheet" href="{{url_for('static',filename='css/reports.css')}}">
+</head>
+<body>
+  <nav class="navbar">
+
+      <a href="{{ url_for('Predict.home') }}">
+          Dự đoán
+      </a>
+
+      <a href="{{ url_for('report.reports') }}">
+          Báo cáo Train
+      </a>
+
+  </nav>
+  <h1>Training Reports</h1>
+  <ul>
+    {% for filename, report in reports.items() %}
+        <h2>{{ filename }}</h2>
+        <pre>{{ report }}</pre>
+        <hr>
+    {% endfor %}
+  </ul>
+
+</body>
+</html>

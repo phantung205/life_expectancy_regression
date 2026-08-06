@@ -6,6 +6,16 @@
     <link rel="stylesheet" href="{{url_for('static',filename='css/index.css')}}">
 </head>
 <body>
+
+  <nav class="navbar">
+        <a href="{{ url_for('Predict.home') }}">
+            Dự đoán
+        </a>
+        <a href="{{ url_for('report.reports') }}">
+            Báo cáo Train
+        </a>
+  </nav>
+
   <h1> mời bại nhập vào các thông số cần dự đoán</h1>
   {% if error %}
     <p style="color:red;">lỗi: {{ error }}</p>
